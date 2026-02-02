@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Valentine's Day ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 40px 30px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-weight: 300;
+      margin-top: 0;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .heart {
+      font-size: 3rem;
+      animation: beat 1.2s infinite;
+      margin: 20px 0;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    button {
+      background: #fff;
+      color: #ff5f8f;
+      border: none;
+      padding: 14px 30px;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .hidden-message {
+      display: none;
+      margin-top: 25px;
+      font-size: 1.15rem;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+  
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+      animation: dramaticReveal 1.2s ease-out forwards;
+    }
+
+    @keyframes dramaticReveal {
+      0% { opacity: 0; transform: translateY(30px) scale(0.9); }
+      60% { opacity: 1; transform: translateY(-6px) scale(1.02); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .choices {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .yes {
+      background: #ffffff;
+      color: #ff5f8f;
+      font-weight: 600;
+    }
+
+    .absolutely {
+      background: #ff2f6d;
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+    }
+  
+    .confetti {
+      position: fixed;
+      top: -10px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 9999;
+    }
+
+    .heart-fall {
+      position: absolute;
+      font-size: 22px;
+      animation: fall 2.8s linear forwards;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10vh) scale(0.8) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) scale(1.2) rotate(360deg); opacity: 0; }
+    }
+  
+    .shake {
+      animation: shake 0.5s ease-in-out;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0, 0); }
+      20% { transform: translate(-6px, 4px); }
+      40% { transform: translate(6px, -4px); }
+      60% { transform: translate(-4px, -6px); }
+      80% { transform: translate(4px, 6px); }
+      100% { transform: translate(0, 0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Happy Valentine's Day</h1>
+    <h2>Jaishri 💕</h2>
+
+    <p>
+      Every day with you feels like a beautiful story I never want to stop reading.
+      You make my world brighter, warmer, and so much happier just by being you.
+    </p>
+
+    <div class="heart">❤️</div>
+
+    <p>
+      This little website is just a small reminder of how much you mean to me.
+      I’m grateful for every laugh, every hug, and every moment we share.
+    </p>
+
+    <button onclick="showMessage()">Click for a surprise</button>
+
+    <div class="hidden-message" id="surprise">
+      <div class="reveal">
+        <p style="font-size:1.4rem; margin-bottom: 8px;">
+          Will you be my Valentine, Jaishri? 💖
+        </p>
+        <div class="choices">
+          <button class="yes" onclick="accept('YES')">YES 💕</button>
+          <button class="absolutely" onclick="accept('ABSOLUTELY YES')">ABSOLUTELY YES 😍</button>
+        </div>
+        <p id="response" style="margin-top:14px; font-size:1.15rem;"></p>
+      </div>
+    </div>
+
+    <footer>
+      Made with love, just for you ✨<br/>
+      <strong>— Gary ❤️</strong>
+    </footer>
+  </div>
+
+  <script>
+    function showMessage() {
+      document.getElementById('surprise').style.display = 'block';
+    }
+  
+    function accept(choice) {
+      const r = document.getElementById('response');
+      r.textContent = choice === 'YES'
+        ? 'You just made my heart so happy 💗'
+        : 'BEST. ANSWER. EVER. 💘 I love you!';
+
+      if (choice === 'ABSOLUTELY YES') {
+        launchHearts();
+        document.querySelector('.card').classList.add('shake');
+        loveMusic.play();
+        setTimeout(() => document.querySelector('.card').classList.remove('shake'), 600);
+      }
+    }
+
+    const loveMusic = new Audio('https://cdn.pixabay.com/download/audio/2022/03/15/audio_4b8f8f6b47.mp3?filename=romantic-piano-112191.mp3');
+
+    function launchHearts() {
+      const container = document.createElement('div');
+      container.className = 'confetti';
+      document.body.appendChild(container);
+
+      const hearts = ['❤️','💖','💘','💕','💗'];
+      for (let i = 0; i < 60; i++) {
+        const h = document.createElement('div');
+        h.className = 'heart-fall';
+        h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        h.style.left = Math.random() * 100 + 'vw';
+        h.style.animationDuration = 2 + Math.random() * 1.5 + 's';
+        h.style.fontSize = 18 + Math.random() * 18 + 'px';
+        container.appendChild(h);
+      }
+
+      setTimeout(() => container.remove(), 3200);
+    }
+  </script>
+</body>
+</html>
